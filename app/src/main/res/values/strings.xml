@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Ovejas</string>
+    <string name="idOveja">Identificador Oveja</string>
+    <string name="propOveja">Propietario Oveja</string>
+    <string name="hintImgOveja">Imagen Oveja</string>
+</resources>
