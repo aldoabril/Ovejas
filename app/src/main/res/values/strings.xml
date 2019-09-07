@@ -3,4 +3,6 @@
     <string name="idOveja">Identificador Oveja</string>
     <string name="propOveja">Propietario Oveja</string>
     <string name="hintImgOveja">Imagen Oveja</string>
+    <string name="crear_rebaño">Crear Rebaño</string>
+    <string name="vender_rebaño">Vender Rebaño</string>
 </resources>
