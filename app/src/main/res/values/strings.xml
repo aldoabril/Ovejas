@@ -5,4 +5,7 @@
     <string name="hintImgOveja">Imagen Oveja</string>
     <string name="crear_rebaño">Crear Rebaño</string>
     <string name="vender_rebaño">Vender Rebaño</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="identificadorOveja">Numero</string>
 </resources>
