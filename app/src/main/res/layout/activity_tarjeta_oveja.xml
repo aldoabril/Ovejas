@@ -7,7 +7,7 @@
     android:paddingLeft="16dp"
 
     android:paddingTop="16dp"
-    tools:context=".tarjeta_oveja"
+    tools:context=".activity.tarjeta_oveja"
     android:orientation="horizontal">
 
     <TextView

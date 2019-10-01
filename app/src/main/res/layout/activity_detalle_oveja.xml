@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetalleOveja">
+    tools:context=".activity.DetalleOveja">
 
     <TextView
         android:id="@+id/textView10"
@@ -115,8 +115,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idPartos"
         app:srcCompat="@android:drawable/btn_star_big_on"
-        tools:layout_editor_absoluteX="311dp"
-        tools:layout_editor_absoluteY="441dp" />
+        android:onClick="crearParto"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

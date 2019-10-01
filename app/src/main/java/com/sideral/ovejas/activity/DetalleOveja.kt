@@ -1,8 +1,11 @@
-package com.sideral.ovejas
+package com.sideral.ovejas.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
+import com.sideral.ovejas.R
 
 class DetalleOveja : AppCompatActivity() {
 
@@ -19,4 +22,13 @@ class DetalleOveja : AppCompatActivity() {
         }
 
     }
+
+    fun crearParto(view: View){
+        val intent = Intent(this, Partos:: class.java).apply {
+            putExtra("CADENA","valor")
+        }
+        startActivity(intent)
+    }
+
+
 }

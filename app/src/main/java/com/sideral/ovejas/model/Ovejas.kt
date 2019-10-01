@@ -1,4 +1,4 @@
-package com.sideral.ovejas
+package com.sideral.ovejas.model
 
 import java.util.*
 
