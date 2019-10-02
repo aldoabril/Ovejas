@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sideral.ovejas.R
 import com.sideral.ovejas.adapter.RecyclerAdapter
+import com.sideral.ovejas.model.GridItem
+import com.sideral.ovejas.model.HeaderItem
 import com.sideral.ovejas.model.Item
 import com.sideral.ovejas.model.Ovejas
 import kotlin.collections.ArrayList
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     val mAdapter : RecyclerAdapter =
         RecyclerAdapter()
 
-    val mItemList: List<Item> = ArrayList()
+    val mItemList: MutableList<Item> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,14 +36,25 @@ class MainActivity : AppCompatActivity() {
         mRecyclerView.setHasFixedSize(true)
         //mToolbar = findViewById(R.id.toolbar)
         mRecyclerView.setRecycledViewPool(RecyclerView.RecycledViewPool())
-        mRecyclerView.layoutManager = GridLayoutManager(this, DEFAULT_SPAN_COUNT)
-        mAdapter.RecyclerAdapter(mItemList, this)
+        val gridLayoutManager = GridLayoutManager(this, DEFAULT_SPAN_COUNT)
+        mRecyclerView.layoutManager = gridLayoutManager
+        mAdapter.RecyclerAdapter(mItemList, gridLayoutManager, DEFAULT_SPAN_COUNT)
         mRecyclerView.adapter = mAdapter
         addMockList()
     }
 
     private fun addMockList() {
+        var item: Item
         var ovejas = getOvejas()
+
+        for (i in 1..200){
+            if (i%20==0 || i==1){
+                item = HeaderItem("Header $i")
+            }else{
+                item = GridItem("Grid $i")
+            }
+            mItemList.add(item)
+        }
         
     }
 
