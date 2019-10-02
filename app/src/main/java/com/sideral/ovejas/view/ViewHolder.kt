@@ -8,13 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sideral.ovejas.R
 import com.sideral.ovejas.activity.DetalleOveja
+import com.sideral.ovejas.model.Item
 import com.sideral.ovejas.model.Ovejas
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val idOveja = view.findViewById(R.id.idOveja) as TextView
+   /* val idOveja = view.findViewById(R.id.idOveja) as TextView
 
 
-    fun bind(oveja: Ovejas, context: Context){
+    fun bind(item: Item, context: Context){
         idOveja.text = oveja.idOveja
         idOveja.setTextColor(if (oveja.sexo.equals("Hembra")) Color.parseColor("#c62828") else Color.parseColor("#1a237e"))
         itemView.setOnClickListener(View.OnClickListener {
@@ -25,6 +26,6 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         })
 
     }
-
+*/
 
 }

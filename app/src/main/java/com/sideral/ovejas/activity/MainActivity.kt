@@ -7,15 +7,19 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sideral.ovejas.R
 import com.sideral.ovejas.adapter.RecyclerAdapter
+import com.sideral.ovejas.model.Item
 import com.sideral.ovejas.model.Ovejas
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
+    private val DEFAULT_SPAN_COUNT: Int=5
     lateinit var mRecyclerView : RecyclerView
     lateinit var mToolbar: Toolbar
     val mAdapter : RecyclerAdapter =
         RecyclerAdapter()
+
+    val mItemList: List<Item> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,10 +32,17 @@ class MainActivity : AppCompatActivity() {
 
         mRecyclerView = findViewById(R.id.rvOvejasList)
         mRecyclerView.setHasFixedSize(true)
-        mToolbar = findViewById(R.id.toolbar)
-        mRecyclerView.layoutManager = GridLayoutManager(this, 5)
-        mAdapter.RecyclerAdapter(getOvejas(), this)
+        //mToolbar = findViewById(R.id.toolbar)
+        mRecyclerView.setRecycledViewPool(RecyclerView.RecycledViewPool())
+        mRecyclerView.layoutManager = GridLayoutManager(this, DEFAULT_SPAN_COUNT)
+        mAdapter.RecyclerAdapter(mItemList, this)
         mRecyclerView.adapter = mAdapter
+        addMockList()
+    }
+
+    private fun addMockList() {
+        var ovejas = getOvejas()
+        
     }
 
     fun getOvejas(): MutableList<Ovejas>{
