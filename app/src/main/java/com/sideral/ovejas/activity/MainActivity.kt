@@ -46,15 +46,24 @@ class MainActivity : AppCompatActivity() {
     private fun addMockList() {
         var item: Item
         var ovejas = getOvejas()
-
-        for (i in 1..200){
+        ovejas.sortBy { it.propietario }
+        var propietario: String =""
+        for (o in ovejas){
+            if (!o.propietario.equals(propietario))
+                item = HeaderItem("${o.propietario}")
+            else
+                item = GridItem("${o.idOveja}")
+            mItemList.add(item)
+            propietario = o.propietario
+        }
+        /*for (i in 1..200){
             if (i%20==0 || i==1){
                 item = HeaderItem("Header $i")
             }else{
                 item = GridItem("Grid $i")
             }
             mItemList.add(item)
-        }
+        }*/
         
     }
 

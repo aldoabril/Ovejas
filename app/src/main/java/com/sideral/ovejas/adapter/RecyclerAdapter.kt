@@ -77,14 +77,12 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
         val count = container.findViewById<TextView>(R.id.gridCount)
         title.text = mItemsList.get(position).mItemTitle
         count.text = position.toString()
+        container.setOnClickListener { v -> mostrarMensaje(v, "You click on the grid") }
 
-        /*container.setOnClickListener(View.OnClickListener {
-             fun onClick(view: View){
-                Toast.makeText(view.context, "You click on the grid ", Toast.LENGTH_SHORT)
-            }
-        })*/
+    }
 
-        container.setOnClickListener({v-> Toast.makeText(container.context, "You click on the grid", Toast.LENGTH_SHORT)})
+    private fun mostrarMensaje(v: View, mensaje: String){
+        Toast.makeText(v.context, mensaje, Toast.LENGTH_SHORT).show()
     }
 
     private fun bindHeaderItem(holder: ViewHolder, position: Int) {
