@@ -1,6 +1,7 @@
 package com.sideral.ovejas.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
 import com.sideral.ovejas.R
+import com.sideral.ovejas.activity.DetalleOveja
 import com.sideral.ovejas.model.Item
 import com.sideral.ovejas.model.Ovejas
 import com.sideral.ovejas.model.TipoItem
@@ -75,9 +77,16 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
         val container = holder.itemView
         val title = container.findViewById<TextView>(R.id.gridTitle)
         val count = container.findViewById<TextView>(R.id.gridCount)
-        title.text = mItemsList.get(position).mItemTitle
+        title.text = mItemsList[position].mItemTitle
         count.text = position.toString()
-        container.setOnClickListener { v -> mostrarMensaje(v, "You click on the grid") }
+        /*val intent = Intent(context.applicationContext, DetalleOveja::class.java)
+            intent.putExtra("IDOVEJA",oveja.idOveja)
+            context.startActivity(intent)*/
+
+        //container.setOnClickListener { v -> mostrarMensaje(v, "You click on the grid") }
+        container.setOnClickListener { v -> val intent = Intent(v.context.applicationContext, DetalleOveja::class.java)
+            intent.putExtra("item",position)
+            v.context.startActivity(intent)}
 
     }
 

@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.Partos"></activity>
-        <activity android:name=".activity.DetalleOveja" />
+        <activity android:name=".activity.Partos"/>
+        <activity android:name=".activity.DetalleOveja"/>
+
         <activity android:name=".AndroidParty" />
         <activity android:name=".GruposVistas" />
         <activity android:name=".activity.tarjeta_oveja" />
