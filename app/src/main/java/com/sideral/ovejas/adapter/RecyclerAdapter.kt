@@ -13,6 +13,7 @@ import com.sideral.ovejas.R
 import com.sideral.ovejas.activity.DetalleOveja
 import com.sideral.ovejas.entity.Item
 import com.sideral.ovejas.entity.TipoItem
+import com.sideral.ovejas.model.ImpOvejaModel
 import com.sideral.ovejas.view.ViewHolder
 
 
@@ -76,13 +77,10 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
         val count = container.findViewById<TextView>(R.id.gridCount)
         title.text = mItemsList[position].mItemTitle
         count.text = position.toString()
-        /*val intent = Intent(context.applicationContext, DetalleOveja::class.java)
-            intent.putExtra("IDOVEJA",oveja.idOveja)
-            context.startActivity(intent)*/
 
-        //container.setOnClickListener { v -> mostrarMensaje(v, "You click on the grid") }
         container.setOnClickListener { v -> val intent = Intent(v.context.applicationContext, DetalleOveja::class.java)
-            intent.putExtra("item",position)
+            val oveja = ImpOvejaModel().getOveja(position)
+            intent.putExtra("item",oveja)
             v.context.startActivity(intent)}
 
     }

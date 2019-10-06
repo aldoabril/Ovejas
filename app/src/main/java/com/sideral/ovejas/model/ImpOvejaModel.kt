@@ -8,6 +8,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class ImpOvejaModel: OvejaModel {
+
+    override fun getOveja(idOveja: Int): Oveja {
+        var ovejas = getOvejas()
+        return ovejas.get(idOveja)
+    }
+
     override fun getOvejas(): MutableList<Oveja> {
         var ovejas: MutableList<Oveja> = ArrayList()
         ovejas.add(Oveja("1", "Aldo", "Hembra",  Calendar.getInstance().time,15 ))

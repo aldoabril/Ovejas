@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import com.sideral.ovejas.R
+import com.sideral.ovejas.entity.Oveja
 
 class DetalleOveja : AppCompatActivity() {
 
@@ -15,10 +16,17 @@ class DetalleOveja : AppCompatActivity() {
         setContentView(R.layout.activity_detalle_oveja)
 
         val intentTrigger = intent
-        if (intentTrigger.hasExtra("IDOVEJA")){
-            val idOveja = intentTrigger.getStringExtra("IDOVEJA")
+        if (intentTrigger.hasExtra("item")){
+            val oveja = intentTrigger.getSerializableExtra("item") as? Oveja
             val idOvejaTextView = findViewById<EditText>(R.id.idOveja)
-            idOvejaTextView.setText(idOveja)
+            idOvejaTextView.setText(oveja?.idOveja)
+            val propietario = findViewById<EditText>(R.id.idPropietario)
+            propietario.setText(oveja?.propietario)
+            val sexo = findViewById<EditText>(R.id.idSexo)
+            sexo.setText(oveja?.sexo)
+            val peso = findViewById<EditText>(R.id.idPeso)
+            peso.setText(40.toString())
+
         }
 
     }
