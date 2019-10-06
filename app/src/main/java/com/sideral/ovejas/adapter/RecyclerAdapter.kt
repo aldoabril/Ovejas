@@ -1,6 +1,5 @@
 package com.sideral.ovejas.adapter
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sideral.ovejas.R
 import com.sideral.ovejas.activity.DetalleOveja
-import com.sideral.ovejas.model.Item
-import com.sideral.ovejas.model.Ovejas
-import com.sideral.ovejas.model.TipoItem
+import com.sideral.ovejas.entity.Item
+import com.sideral.ovejas.entity.TipoItem
 import com.sideral.ovejas.view.ViewHolder
-import kotlinx.android.synthetic.main.header_type_layout.view.*
 
 
 class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
@@ -43,7 +40,7 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view:View
-        if (viewType == 0){
+        if (viewType == TipoItem().HEADER_ITEM_TYPE){
             view = LayoutInflater.from(parent.context).inflate(R.layout.header_type_layout,parent,false)
         }else{
             view = LayoutInflater.from(parent.context).inflate(R.layout.grid_type_layout,parent,false)

@@ -1,4 +1,4 @@
-package com.sideral.ovejas.model
+package com.sideral.ovejas.entity
 
 class TipoItem {
     val HEADER_ITEM_TYPE : Int = 0

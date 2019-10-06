@@ -1,4 +1,4 @@
-package com.sideral.ovejas.model
+package com.sideral.ovejas.entity
 
 class HeaderItem(title: String) : Item(title){
     override fun getItemType(): Int{

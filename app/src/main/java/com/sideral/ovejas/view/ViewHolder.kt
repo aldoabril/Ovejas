@@ -1,15 +1,7 @@
 package com.sideral.ovejas.view
 
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
 import android.view.View
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.sideral.ovejas.R
-import com.sideral.ovejas.activity.DetalleOveja
-import com.sideral.ovejas.model.Item
-import com.sideral.ovejas.model.Ovejas
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
    /* val idOveja = view.findViewById(R.id.idOveja) as TextView

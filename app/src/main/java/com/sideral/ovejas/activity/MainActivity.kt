@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sideral.ovejas.R
 import com.sideral.ovejas.adapter.RecyclerAdapter
-import com.sideral.ovejas.model.GridItem
-import com.sideral.ovejas.model.HeaderItem
-import com.sideral.ovejas.model.Item
-import com.sideral.ovejas.model.Ovejas
+import com.sideral.ovejas.entity.GridItem
+import com.sideral.ovejas.entity.HeaderItem
+import com.sideral.ovejas.entity.Item
+import com.sideral.ovejas.entity.Oveja
+import com.sideral.ovejas.model.ImpOvejaModel
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun addMockList() {
         var item: Item
-        var ovejas = getOvejas()
+        var ovejas = ImpOvejaModel().getOvejas()
         ovejas.sortBy { it.propietario }
         var propietario: String =""
         for (o in ovejas){
@@ -64,23 +65,8 @@ class MainActivity : AppCompatActivity() {
             }
             mItemList.add(item)
         }*/
-        
+
     }
 
-    fun getOvejas(): MutableList<Ovejas>{
-        var ovejas: MutableList<Ovejas> = ArrayList()
-        ovejas.add(Ovejas("1", "Aldo", "Hembra"))
-        ovejas.add(Ovejas("2", "Lila", "Macho"))
-        ovejas.add(Ovejas("3", "Luciana", "Hembra"))
-        ovejas.add(Ovejas("4", "Daniel", "Hembra"))
-        ovejas.add(Ovejas("6", "Aldo", "Hembra"))
-        ovejas.add(Ovejas("7", "Lila", "Hembra"))
-        ovejas.add(Ovejas("8", "Luciana", "Hembra"))
-        ovejas.add(Ovejas("9", "Daniel", "Hembra"))
-        ovejas.add(Ovejas("10", "Aldo", "Hembra"))
-        ovejas.add(Ovejas("11", "Lila", "Macho"))
-        ovejas.add(Ovejas("12", "Luciana", "Hembra"))
-        ovejas.add(Ovejas("13", "Daniel", "Hembra"))
-        return ovejas
-    }
+
 }

@@ -1,4 +1,4 @@
-package com.sideral.ovejas.model
+package com.sideral.ovejas.entity
 
 abstract class Item(title: String) {
 
