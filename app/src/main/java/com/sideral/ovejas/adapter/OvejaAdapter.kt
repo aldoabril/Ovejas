@@ -13,11 +13,12 @@ import com.sideral.ovejas.R
 import com.sideral.ovejas.activity.DetalleOveja
 import com.sideral.ovejas.entity.Item
 import com.sideral.ovejas.entity.TipoItem
-import com.sideral.ovejas.model.ImpOvejaModel
+import com.sideral.ovejas.model.EditaOvejaModelImp
+import com.sideral.ovejas.presenter.EditaOvejaPresenterImp
 import com.sideral.ovejas.view.ViewHolder
 
 
-class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
+class OvejaAdapter : RecyclerView.Adapter<ViewHolder>() {
     private var mDefaultSpanCount: Int = 0
     private var mItemsList: MutableList<Item> = ArrayList()
 
@@ -79,7 +80,7 @@ class RecyclerAdapter : RecyclerView.Adapter<ViewHolder>() {
         count.text = position.toString()
 
         container.setOnClickListener { v -> val intent = Intent(v.context.applicationContext, DetalleOveja::class.java)
-            val oveja = ImpOvejaModel().getOveja(position)
+            val oveja = EditaOvejaPresenterImp(holder.view).getOveja(position)
             intent.putExtra("item",oveja)
             v.context.startActivity(intent)}
 

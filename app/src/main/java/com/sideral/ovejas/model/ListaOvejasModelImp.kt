@@ -1,17 +1,16 @@
 package com.sideral.ovejas.model
 
 import com.sideral.ovejas.entity.Oveja
-import java.time.Instant
-import java.time.LocalDate
-import java.time.LocalTime
+import com.sideral.ovejas.presenter.ListaOvejasPresenterImp
+import com.sideral.ovejas.presenter.OvejaPresenter
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ImpOvejaModel: OvejaModel {
+class ListaOvejasModelImp: OvejaModel.ListaOveja {
+    val mListaOvejasPresenterImp : OvejaPresenter.ListaOveja
 
-    override fun getOveja(idOveja: Int): Oveja {
-        var ovejas = getOvejas()
-        return ovejas.get(idOveja)
+    constructor(ovejaModel: OvejaPresenter.ListaOveja)  {
+        mListaOvejasPresenterImp = ovejaModel
     }
 
     override fun getOvejas(): MutableList<Oveja> {

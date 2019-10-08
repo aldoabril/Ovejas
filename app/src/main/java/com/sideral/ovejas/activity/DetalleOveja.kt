@@ -7,14 +7,10 @@ import android.view.View
 import android.widget.EditText
 import com.sideral.ovejas.R
 import com.sideral.ovejas.entity.Oveja
+import com.sideral.ovejas.view.OvejaView
 
-class DetalleOveja : AppCompatActivity() {
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detalle_oveja)
-
+class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
+    override fun mostrarDetalleOveja() {
         val intentTrigger = intent
         if (intentTrigger.hasExtra("item")){
             val oveja = intentTrigger.getSerializableExtra("item") as? Oveja
@@ -28,6 +24,14 @@ class DetalleOveja : AppCompatActivity() {
             peso.setText(40.toString())
 
         }
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detalle_oveja)
+        mostrarDetalleOveja()
+
 
     }
 

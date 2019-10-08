@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    val view = view
    /* val idOveja = view.findViewById(R.id.idOveja) as TextView
 
 

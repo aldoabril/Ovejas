@@ -6,21 +6,44 @@ import android.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sideral.ovejas.R
-import com.sideral.ovejas.adapter.RecyclerAdapter
+import com.sideral.ovejas.adapter.OvejaAdapter
 import com.sideral.ovejas.entity.GridItem
 import com.sideral.ovejas.entity.HeaderItem
 import com.sideral.ovejas.entity.Item
 import com.sideral.ovejas.entity.Oveja
-import com.sideral.ovejas.model.ImpOvejaModel
+import com.sideral.ovejas.model.EditaOvejaModelImp
+import com.sideral.ovejas.model.OvejaModel
+import com.sideral.ovejas.presenter.ListaOvejasPresenterImp
+import com.sideral.ovejas.presenter.OvejaPresenter
+import com.sideral.ovejas.view.OvejaView
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OvejaView.Lista {
+
+    private val mOvejaPresenter = ListaOvejasPresenterImp(this)
+
+    override fun mostrarOvejas() {
+        var item: Item
+        var ovejas = mOvejaPresenter.getOvejas()
+        ovejas.sortBy { it.propietario }
+        var propietario: String =""
+        for (o in ovejas){
+            if (!o.propietario.equals(propietario))
+                item = HeaderItem("${o.propietario}")
+            else
+                item = GridItem("${o.idOveja}")
+            mItemList.add(item)
+            propietario = o.propietario
+        }
+    }
+
+
 
     private val DEFAULT_SPAN_COUNT: Int=5
     lateinit var mRecyclerView : RecyclerView
     lateinit var mToolbar: Toolbar
-    val mAdapter : RecyclerAdapter =
-        RecyclerAdapter()
+    val mAdapter : OvejaAdapter =
+        OvejaAdapter()
 
     val mItemList: MutableList<Item> = ArrayList()
 
@@ -41,31 +64,7 @@ class MainActivity : AppCompatActivity() {
         mRecyclerView.layoutManager = gridLayoutManager
         mAdapter.RecyclerAdapter(mItemList, gridLayoutManager, DEFAULT_SPAN_COUNT)
         mRecyclerView.adapter = mAdapter
-        addMockList()
-    }
-
-    private fun addMockList() {
-        var item: Item
-        var ovejas = ImpOvejaModel().getOvejas()
-        ovejas.sortBy { it.propietario }
-        var propietario: String =""
-        for (o in ovejas){
-            if (!o.propietario.equals(propietario))
-                item = HeaderItem("${o.propietario}")
-            else
-                item = GridItem("${o.idOveja}")
-            mItemList.add(item)
-            propietario = o.propietario
-        }
-        /*for (i in 1..200){
-            if (i%20==0 || i==1){
-                item = HeaderItem("Header $i")
-            }else{
-                item = GridItem("Grid $i")
-            }
-            mItemList.add(item)
-        }*/
-
+        mostrarOvejas()
     }
 
 
