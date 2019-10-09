@@ -10,8 +10,9 @@ class EditaOvejaPresenterImp(ovejaView: OvejaView.Detalle) : OvejaPresenter.Edit
     private val mOvejaView = ovejaView
     private val mOvejaModel = EditaOvejaModelImp(this)
 
-    override fun getOveja(idOveja: Int): Oveja {
-        return mOvejaModel.getOveja(idOveja)
+    override fun mostrarOveja(idOveja: Int) {
+         val oveja = mOvejaModel.getOveja(idOveja)
+          mOvejaView.mostrarDetalleOveja(oveja)
     }
 
     override fun guardar(oveja: Oveja) {

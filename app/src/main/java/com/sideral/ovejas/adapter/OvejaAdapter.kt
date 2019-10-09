@@ -80,8 +80,7 @@ class OvejaAdapter : RecyclerView.Adapter<ViewHolder>() {
         count.text = position.toString()
 
         container.setOnClickListener { v -> val intent = Intent(v.context.applicationContext, DetalleOveja::class.java)
-            val oveja = EditaOvejaPresenterImp(holder.view).getOveja(position)
-            intent.putExtra("item",oveja)
+            intent.putExtra("item",position)
             v.context.startActivity(intent)}
 
     }

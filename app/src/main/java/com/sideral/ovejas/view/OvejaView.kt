@@ -8,7 +8,8 @@ interface OvejaView {
         fun mostrarOvejas()
     }
     interface Detalle{
-        fun mostrarDetalleOveja()
+        fun getOveja()
+        fun mostrarDetalleOveja(oveja: Oveja)
     }
 
 

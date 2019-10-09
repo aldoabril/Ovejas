@@ -8,7 +8,7 @@ interface OvejaPresenter {
         fun guardar(oveja: Oveja)
         fun borrar(idOveja: Int)
         fun actualizar(oveja: Oveja)
-        fun getOveja(idOveja: Int):Oveja
+        fun mostrarOveja(idOveja: Int)
 
     }
 

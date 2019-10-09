@@ -7,13 +7,23 @@ import android.view.View
 import android.widget.EditText
 import com.sideral.ovejas.R
 import com.sideral.ovejas.entity.Oveja
+import com.sideral.ovejas.presenter.EditaOvejaPresenterImp
 import com.sideral.ovejas.view.OvejaView
 
 class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
-    override fun mostrarDetalleOveja() {
+    val mEditaOvejaPresenterImp = EditaOvejaPresenterImp(this)
+
+    override fun getOveja() {
         val intentTrigger = intent
-        if (intentTrigger.hasExtra("item")){
-            val oveja = intentTrigger.getSerializableExtra("item") as? Oveja
+        if (intentTrigger.hasExtra("item")) {
+            mEditaOvejaPresenterImp.mostrarOveja(intentTrigger.getIntExtra("item", -1))
+        }
+    }
+
+
+    override fun mostrarDetalleOveja(oveja: Oveja) {
+
+            //val oveja = intentTrigger.getSerializableExtra("item") as? Oveja
             val idOvejaTextView = findViewById<EditText>(R.id.idOveja)
             idOvejaTextView.setText(oveja?.idOveja)
             val propietario = findViewById<EditText>(R.id.idPropietario)
@@ -23,14 +33,14 @@ class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
             val peso = findViewById<EditText>(R.id.idPeso)
             peso.setText(40.toString())
 
-        }
+
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_oveja)
-        mostrarDetalleOveja()
+        getOveja()
 
 
     }

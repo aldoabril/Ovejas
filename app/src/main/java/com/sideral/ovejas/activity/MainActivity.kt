@@ -21,6 +21,13 @@ import kotlin.collections.ArrayList
 class MainActivity : AppCompatActivity(), OvejaView.Lista {
 
     private val mOvejaPresenter = ListaOvejasPresenterImp(this)
+    private val DEFAULT_SPAN_COUNT: Int=5
+    lateinit var mRecyclerView : RecyclerView
+    lateinit var mToolbar: Toolbar
+    val mAdapter : OvejaAdapter =
+        OvejaAdapter()
+    val mItemList: MutableList<Item> = ArrayList()
+
 
     override fun mostrarOvejas() {
         var item: Item
@@ -36,16 +43,6 @@ class MainActivity : AppCompatActivity(), OvejaView.Lista {
             propietario = o.propietario
         }
     }
-
-
-
-    private val DEFAULT_SPAN_COUNT: Int=5
-    lateinit var mRecyclerView : RecyclerView
-    lateinit var mToolbar: Toolbar
-    val mAdapter : OvejaAdapter =
-        OvejaAdapter()
-
-    val mItemList: MutableList<Item> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
