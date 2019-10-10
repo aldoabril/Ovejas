@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import kotlin.random.Random
 
 class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null, DB_VERSION) {
     override fun onCreate(db: SQLiteDatabase?) {
@@ -33,6 +34,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
                 + OVEJAS_PESO_COLUMN + " INTEGER,"
                 + OVEJAS_FECHA_NAC_COLUMN +" DATE,"
                 + OVEJAS_PROPIETARIO_COLUMN + " INTEGER,"
+                + OVEJAS_ESTADO + " TEXT,"
                 + OVEJAS_MADRE_COLUMN + " INTEGER"+")")
 
             db!!.execSQL(CREATE_OVEJAS_TABLE)
@@ -90,20 +92,56 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
     }
 
     fun inicializaOvejas(){
-        val values =  ContentValues()
-        values.put(OVEJAS_PESO_COLUMN,50)
-        values.put(OVEJAS_FECHA_NAC_COLUMN,"2019/10/09")
-        values.put(OVEJAS_PROPIETARIO_COLUMN,1)
-        values.put(OVEJAS_MADRE_COLUMN,1)
+        val db = this.writableDatabase
+        lateinit var values: Any
+        var propietario: Int = 0
+        var peso: Double = 0.0
+        for (i in 1..100){
+            peso = Random.nextDouble(40.100)
+            when (i){
+                in 1..40 -> propietario =1
+                in 41..51 -> propietario = 2
+                in 52..61 -> propietario = 3
+                in 62..72 -> propietario = 4
+                in 73..100 -> propietario = 1
+            }
+            values =  ContentValues()
+            values.put(OVEJAS_PESO_COLUMN,peso)
+            values.put(OVEJAS_FECHA_NAC_COLUMN,"2019/10/09")
+            values.put(OVEJAS_PROPIETARIO_COLUMN,propietario)
+            //values.put(OVEJAS_MADRE_COLUMN,1)
+            values.put(OVEJAS_ESTADO,1)
+            db.insert(OVEJAS_TABLE_NAME,null, values)
+        }
+
+
 
     }
 
     fun incializaPropietarios(){
-        val values =  ContentValues()
-        values.put(PROPIETARIOS_NOMBRE_COLUMN,"Lila")
+        var values =  ContentValues()
+        values.put(PROPIETARIOS_NOMBRE_COLUMN,"Alonso")
         values.put(PROPIETARIOS_ESTADO_COLUMN,"V")
         val db = this.writableDatabase
-        db.insert(OVEJAS_TABLE_NAME,null, values)
+        db.insert(PROPIETARIOS_TABLE_NAME,null, values)
+
+        values =  ContentValues()
+        values.put(PROPIETARIOS_NOMBRE_COLUMN,"Lila")
+        values.put(PROPIETARIOS_ESTADO_COLUMN,"V")
+        db.insert(PROPIETARIOS_TABLE_NAME,null, values)
+
+        values =  ContentValues()
+        values.put(PROPIETARIOS_NOMBRE_COLUMN,"Raquel")
+        values.put(PROPIETARIOS_ESTADO_COLUMN,"V")
+        db.insert(PROPIETARIOS_TABLE_NAME,null, values)
+
+
+        values =  ContentValues()
+        values.put(PROPIETARIOS_NOMBRE_COLUMN,"Jasmine")
+        values.put(PROPIETARIOS_ESTADO_COLUMN,"V")
+        db.insert(PROPIETARIOS_TABLE_NAME,null, values)
+
+
     }
 
     companion object{
