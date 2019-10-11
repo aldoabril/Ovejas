@@ -1,5 +1,6 @@
 package com.sideral.ovejas.view
 
+
 import com.sideral.ovejas.entity.Oveja
 
 interface OvejaView {

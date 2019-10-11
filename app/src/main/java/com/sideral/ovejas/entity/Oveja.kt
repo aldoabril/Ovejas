@@ -4,11 +4,13 @@ import java.io.Serializable
 import java.time.LocalDate
 import java.util.*
 
- class Oveja(idOveja: String, propietario:String,sexo: String, fechaNacimiento: Date, peso: Int): Serializable{
-   val idOveja = idOveja
-   val propietario = propietario
-   val sexo = sexo
-   val fechaNacimiento = fechaNacimiento
-   val peso = peso
+ class Oveja: Serializable{
+
+     var idOveja : Int = 0
+     var propietario : String = ""
+     var sexo : String = ""
+     var fechaNacimiento: Date = Calendar.getInstance().time
+     var peso : Double = 0.0
+
 
  }

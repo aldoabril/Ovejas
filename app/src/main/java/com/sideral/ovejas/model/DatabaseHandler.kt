@@ -6,6 +6,9 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
+import java.lang.Exception
+import kotlin.math.log
 import kotlin.random.Random
 
 class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null, DB_VERSION) {
@@ -15,30 +18,52 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
         crearTablaOvejaMovimientos(db)
         crearTablaTipoMovimientos(db)
         crearTablaEstados(db)
+        incializaPropietarios(db)
+        inicializaOvejas(db)
 
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        db!!.execSQL("DROP TABLE IF EXISTS '" + OVEJAS_TABLE_NAME + "'");
+        db!!.execSQL("DROP TABLE IF EXISTS '" + PROPIETARIOS_TABLE_NAME + "'");
+        db!!.execSQL("DROP TABLE IF EXISTS '" + TIPOMOV_TABLE_NAME + "'");
+        db!!.execSQL("DROP TABLE IF EXISTS '" + ESTADOS_TABLE_NAME + "'");
+        onCreate(db)
+
     }
 
     fun getOvejas(): Cursor? {
         val db = this.readableDatabase
-        return db.rawQuery("SELECT * FROM $OVEJAS_TABLE_NAME", null)
+        return db.rawQuery("SELECT * FROM $OVEJAS_TABLE_NAME, $PROPIETARIOS_TABLE_NAME WHERE $OVEJAS_TABLE_NAME.$OVEJAS_PROPIETARIO_COLUMN = $PROPIETARIOS_TABLE_NAME.$PROPIETARIOS_ID_COLUMN", null)
+    }
+
+    fun getOveja(idOveja: Int):Cursor?{
+        val db = this.readableDatabase
+        lateinit var c: Cursor
+        try {
+            val arguments = mutableListOf<String>()
+            arguments.add(idOveja.toString())
+            c = db.rawQuery("SELECT * FROM $OVEJAS_TABLE_NAME, $PROPIETARIOS_TABLE_NAME WHERE $OVEJAS_TABLE_NAME.$OVEJAS_PROPIETARIO_COLUMN = $PROPIETARIOS_TABLE_NAME.$PROPIETARIOS_ID_COLUMN AND $OVEJAS_TABLE_NAME.$OVEJAS_ID_COLUMN = $idOveja", null)
+
+        } catch (e: Exception){
+            Log.d("MENSAJE",e.message)
+        }
+        return c
     }
 
     fun crearTablaOvejas(db: SQLiteDatabase?){
         val CREATE_OVEJAS_TABLE = ("CREATE TABLE " +
                 OVEJAS_TABLE_NAME + "("
-                + OVEJAS_ID_COLUMN + " INTEGER PRIMARY KEY,"
-                + OVEJAS_PESO_COLUMN + " INTEGER,"
+                + OVEJAS_ID_COLUMN + " INTEGER PRIMARY KEY ,"
+                + OVEJAS_PESO_COLUMN + " NUMERIC,"
                 + OVEJAS_FECHA_NAC_COLUMN +" DATE,"
                 + OVEJAS_PROPIETARIO_COLUMN + " INTEGER,"
                 + OVEJAS_ESTADO + " TEXT,"
+                + OVEJAS_SEXO + " TEXT,"
                 + OVEJAS_MADRE_COLUMN + " INTEGER"+")")
 
             db!!.execSQL(CREATE_OVEJAS_TABLE)
-
+            Log.d("tabla",OVEJAS_TABLE_NAME)
 
     }
 
@@ -50,7 +75,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
                 + PROPIETARIOS_ESTADO_COLUMN +" TEXT" +")")
 
         db!!.execSQL(CREATE_PROPIETARIOS_TABLE)
-
+        Log.d("tabla",PROPIETARIOS_TABLE_NAME)
 
     }
 
@@ -64,6 +89,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
                 + MOVIMIENTOS_ESTADO_COLUMN +" TEXT"+")")
 
         db!!.execSQL(CREATE_TABLE_MOVIMIENTOS)
+        Log.d("tabla",MOVIMIENTOS_TABLE_NAME)
 
 
     }
@@ -76,6 +102,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
                 + TIPOMOV_ESTADO_COLUMN +" TEXT"+")")
 
         db!!.execSQL(CREATE_TABLE_TIPO_MOVIMIENTOS)
+        Log.d("tabla",TIPOMOV_TABLE_NAME)
 
 
     }
@@ -87,15 +114,15 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
                 + ESTADOS_DESCRIPCION_COLUMN +" TEXT"+")")
 
         db!!.execSQL(CREATE_TABLE_ESTADOS)
-        incializaPropietarios()
+        Log.d("tabla",ESTADOS_TABLE_NAME)
+
 
     }
 
-    fun inicializaOvejas(){
-        val db = this.writableDatabase
+    fun inicializaOvejas(db: SQLiteDatabase?) {
         lateinit var values: Any
         var propietario: Int = 0
-        var peso: Double = 0.0
+        var peso: Double
         for (i in 1..100){
             peso = Random.nextDouble(40.100)
             when (i){
@@ -111,35 +138,36 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
             values.put(OVEJAS_PROPIETARIO_COLUMN,propietario)
             //values.put(OVEJAS_MADRE_COLUMN,1)
             values.put(OVEJAS_ESTADO,1)
-            db.insert(OVEJAS_TABLE_NAME,null, values)
+            values.put(OVEJAS_SEXO,"M")
+            db!!.insert(OVEJAS_TABLE_NAME,null, values)
+            values.clear()
         }
 
 
 
     }
 
-    fun incializaPropietarios(){
+    fun incializaPropietarios(db: SQLiteDatabase?) {
         var values =  ContentValues()
         values.put(PROPIETARIOS_NOMBRE_COLUMN,"Alonso")
         values.put(PROPIETARIOS_ESTADO_COLUMN,"V")
-        val db = this.writableDatabase
-        db.insert(PROPIETARIOS_TABLE_NAME,null, values)
-
+        db!!.insert(PROPIETARIOS_TABLE_NAME,null, values)
+        values.clear()
         values =  ContentValues()
         values.put(PROPIETARIOS_NOMBRE_COLUMN,"Lila")
         values.put(PROPIETARIOS_ESTADO_COLUMN,"V")
-        db.insert(PROPIETARIOS_TABLE_NAME,null, values)
-
+        db!!.insert(PROPIETARIOS_TABLE_NAME,null, values)
+        values.clear()
         values =  ContentValues()
         values.put(PROPIETARIOS_NOMBRE_COLUMN,"Raquel")
         values.put(PROPIETARIOS_ESTADO_COLUMN,"V")
-        db.insert(PROPIETARIOS_TABLE_NAME,null, values)
-
+        db!!.insert(PROPIETARIOS_TABLE_NAME,null, values)
+        values.clear()
 
         values =  ContentValues()
         values.put(PROPIETARIOS_NOMBRE_COLUMN,"Jasmine")
         values.put(PROPIETARIOS_ESTADO_COLUMN,"V")
-        db.insert(PROPIETARIOS_TABLE_NAME,null, values)
+        db!!.insert(PROPIETARIOS_TABLE_NAME,null, values)
 
 
     }
@@ -155,6 +183,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
         val OVEJAS_PROPIETARIO_COLUMN = "PROPIETARIO_ID"
         val OVEJAS_MADRE_COLUMN = "OBJETAS_ID"
         val OVEJAS_ESTADO = "ESTADO"
+        val OVEJAS_SEXO = "SEXO"
 
         //TABLA PROPIETARIIOS
         val PROPIETARIOS_TABLE_NAME = "PROPIETARIOS"
@@ -184,4 +213,5 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
 
 
     }
+    var companion = Companion
 }

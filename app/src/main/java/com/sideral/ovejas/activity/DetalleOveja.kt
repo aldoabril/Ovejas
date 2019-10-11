@@ -7,11 +7,14 @@ import android.view.View
 import android.widget.EditText
 import com.sideral.ovejas.R
 import com.sideral.ovejas.entity.Oveja
+import com.sideral.ovejas.model.DatabaseHandler
 import com.sideral.ovejas.presenter.EditaOvejaPresenterImp
+import com.sideral.ovejas.presenter.ListaOvejasPresenterImp
 import com.sideral.ovejas.view.OvejaView
 
 class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
-    val mEditaOvejaPresenterImp = EditaOvejaPresenterImp(this)
+    private val dbHandler = DatabaseHandler(this)
+    val mEditaOvejaPresenterImp = EditaOvejaPresenterImp(this, dbHandler)
 
     override fun getOveja() {
         val intentTrigger = intent
@@ -25,13 +28,15 @@ class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
 
             //val oveja = intentTrigger.getSerializableExtra("item") as? Oveja
             val idOvejaTextView = findViewById<EditText>(R.id.idOveja)
-            idOvejaTextView.setText(oveja?.idOveja)
+            idOvejaTextView.setText(oveja.idOveja.toString())
             val propietario = findViewById<EditText>(R.id.idPropietario)
-            propietario.setText(oveja?.propietario)
+            propietario.setText(oveja.propietario)
             val sexo = findViewById<EditText>(R.id.idSexo)
-            sexo.setText(oveja?.sexo)
+            sexo.setText(oveja.sexo)
+            val fecha = findViewById<EditText>(R.id.idFechaNac)
+            //fecha.setText(oveja.fechaNacimiento)
             val peso = findViewById<EditText>(R.id.idPeso)
-            peso.setText(40.toString())
+            peso.setText(peso.toString())
 
 
     }

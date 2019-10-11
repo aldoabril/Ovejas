@@ -76,7 +76,7 @@ class OvejaAdapter : RecyclerView.Adapter<ViewHolder>() {
         val container = holder.itemView
         val title = container.findViewById<TextView>(R.id.gridTitle)
         val count = container.findViewById<TextView>(R.id.gridCount)
-        title.text = mItemsList[position].mItemTitle
+        title.text = position.toString()//mItemsList[position].mItemTitle
         count.text = position.toString()
 
         container.setOnClickListener { v -> val intent = Intent(v.context.applicationContext, DetalleOveja::class.java)

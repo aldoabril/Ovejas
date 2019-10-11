@@ -1,18 +1,19 @@
 package com.sideral.ovejas.presenter
 
 import com.sideral.ovejas.entity.Oveja
+import com.sideral.ovejas.model.DatabaseHandler
 import com.sideral.ovejas.model.EditaOvejaModelImp
 import com.sideral.ovejas.model.ListaOvejasModelImp
 import com.sideral.ovejas.view.OvejaView
 
-class EditaOvejaPresenterImp(ovejaView: OvejaView.Detalle) : OvejaPresenter.EditaOveja{
+class EditaOvejaPresenterImp(ovejaView: OvejaView.Detalle, dbHandler: DatabaseHandler) : OvejaPresenter.EditaOveja{
 
     private val mOvejaView = ovejaView
-    private val mOvejaModel = EditaOvejaModelImp(this)
+    private val mOvejaModel = EditaOvejaModelImp(this,dbHandler)
+
 
     override fun mostrarOveja(idOveja: Int) {
-         val oveja = mOvejaModel.getOveja(idOveja)
-          mOvejaView.mostrarDetalleOveja(oveja)
+          mOvejaView.mostrarDetalleOveja(mOvejaModel.getOveja(idOveja))
     }
 
     override fun guardar(oveja: Oveja) {
