@@ -34,7 +34,18 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
 
     fun getOvejas(): Cursor? {
         val db = this.readableDatabase
-        return db.rawQuery("SELECT * FROM $OVEJAS_TABLE_NAME, $PROPIETARIOS_TABLE_NAME WHERE $OVEJAS_TABLE_NAME.$OVEJAS_PROPIETARIO_COLUMN = $PROPIETARIOS_TABLE_NAME.$PROPIETARIOS_ID_COLUMN", null)
+        lateinit var c: Cursor
+        try {
+          c= db.rawQuery("SELECT $OVEJAS_TABLE_NAME.$OVEJAS_ID_COLUMN," +
+                    "$OVEJAS_TABLE_NAME.$OVEJAS_PROPIETARIO_COLUMN," +
+                    "$PROPIETARIOS_TABLE_NAME.$PROPIETARIOS_NOMBRE_COLUMN" +
+                    " FROM $OVEJAS_TABLE_NAME, $PROPIETARIOS_TABLE_NAME" +
+                    " WHERE $OVEJAS_TABLE_NAME.$OVEJAS_PROPIETARIO_COLUMN = $PROPIETARIOS_TABLE_NAME.$PROPIETARIOS_ID_COLUMN", null)
+
+        } catch (e: Exception){
+            Log.d("MENSAJE",e.message)
+        }
+        return c
     }
 
     fun getOveja(idOveja: Int):Cursor?{
@@ -43,7 +54,16 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
         try {
             val arguments = mutableListOf<String>()
             arguments.add(idOveja.toString())
-            c = db.rawQuery("SELECT * FROM $OVEJAS_TABLE_NAME, $PROPIETARIOS_TABLE_NAME WHERE $OVEJAS_TABLE_NAME.$OVEJAS_PROPIETARIO_COLUMN = $PROPIETARIOS_TABLE_NAME.$PROPIETARIOS_ID_COLUMN AND $OVEJAS_TABLE_NAME.$OVEJAS_ID_COLUMN = $idOveja", null)
+            c = db.rawQuery("SELECT $OVEJAS_TABLE_NAME.$OVEJAS_ID_COLUMN," +
+                    "$OVEJAS_TABLE_NAME.$OVEJAS_PROPIETARIO_COLUMN," +
+                    "$OVEJAS_TABLE_NAME.$OVEJAS_FECHA_NAC_COLUMN," +
+                    "$OVEJAS_TABLE_NAME.$OVEJAS_PESO_COLUMN," +
+                    "$OVEJAS_TABLE_NAME.$OVEJAS_SEXO," +
+                    "$OVEJAS_TABLE_NAME.$OVEJAS_MADRE_COLUMN," +
+                    "$PROPIETARIOS_TABLE_NAME.$PROPIETARIOS_NOMBRE_COLUMN" +
+                     " FROM $OVEJAS_TABLE_NAME, $PROPIETARIOS_TABLE_NAME" +
+                     " WHERE $OVEJAS_TABLE_NAME.$OVEJAS_PROPIETARIO_COLUMN = $PROPIETARIOS_TABLE_NAME.$PROPIETARIOS_ID_COLUMN" +
+                     " AND $OVEJAS_TABLE_NAME.$OVEJAS_ID_COLUMN = $idOveja", null)
 
         } catch (e: Exception){
             Log.d("MENSAJE",e.message)
@@ -54,7 +74,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
     fun crearTablaOvejas(db: SQLiteDatabase?){
         val CREATE_OVEJAS_TABLE = ("CREATE TABLE " +
                 OVEJAS_TABLE_NAME + "("
-                + OVEJAS_ID_COLUMN + " INTEGER PRIMARY KEY ,"
+                + OVEJAS_ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + OVEJAS_PESO_COLUMN + " NUMERIC,"
                 + OVEJAS_FECHA_NAC_COLUMN +" DATE,"
                 + OVEJAS_PROPIETARIO_COLUMN + " INTEGER,"
@@ -130,7 +150,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
                 in 41..51 -> propietario = 2
                 in 52..61 -> propietario = 3
                 in 62..72 -> propietario = 4
-                in 73..100 -> propietario = 1
+                in 73..100 -> propietario = 2
             }
             values =  ContentValues()
             values.put(OVEJAS_PESO_COLUMN,peso)

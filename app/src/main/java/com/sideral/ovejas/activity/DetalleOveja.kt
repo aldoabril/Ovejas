@@ -30,13 +30,13 @@ class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
             val idOvejaTextView = findViewById<EditText>(R.id.idOveja)
             idOvejaTextView.setText(oveja.idOveja.toString())
             val propietario = findViewById<EditText>(R.id.idPropietario)
-            propietario.setText(oveja.propietario)
+            propietario.setText(oveja.propietario.nombre)
             val sexo = findViewById<EditText>(R.id.idSexo)
             sexo.setText(oveja.sexo)
             val fecha = findViewById<EditText>(R.id.idFechaNac)
             //fecha.setText(oveja.fechaNacimiento)
             val peso = findViewById<EditText>(R.id.idPeso)
-            peso.setText(peso.toString())
+            peso.setText(oveja.peso.toString())
 
 
     }

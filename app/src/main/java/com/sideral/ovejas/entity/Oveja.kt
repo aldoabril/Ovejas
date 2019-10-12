@@ -7,7 +7,7 @@ import java.util.*
  class Oveja: Serializable{
 
      var idOveja : Int = 0
-     var propietario : String = ""
+     var propietario : Propietario = Propietario()
      var sexo : String = ""
      var fechaNacimiento: Date = Calendar.getInstance().time
      var peso : Double = 0.0

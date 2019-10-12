@@ -16,6 +16,7 @@ import com.sideral.ovejas.entity.TipoItem
 import com.sideral.ovejas.model.EditaOvejaModelImp
 import com.sideral.ovejas.presenter.EditaOvejaPresenterImp
 import com.sideral.ovejas.view.ViewHolder
+import kotlinx.android.synthetic.main.activity_detalle_oveja.view.*
 
 
 class OvejaAdapter : RecyclerView.Adapter<ViewHolder>() {
@@ -75,12 +76,11 @@ class OvejaAdapter : RecyclerView.Adapter<ViewHolder>() {
     private fun bindGridItem(holder: ViewHolder, position: Int) {
         val container = holder.itemView
         val title = container.findViewById<TextView>(R.id.gridTitle)
-        val count = container.findViewById<TextView>(R.id.gridCount)
-        title.text = position.toString()//mItemsList[position].mItemTitle
-        count.text = position.toString()
+        title.text = mItemsList[position].mItemTitle
 
         container.setOnClickListener { v -> val intent = Intent(v.context.applicationContext, DetalleOveja::class.java)
-            intent.putExtra("item",position)
+            var id =mItemsList[position].mItemTitle.toInt()
+            intent.putExtra("item", id)
             v.context.startActivity(intent)}
 
     }

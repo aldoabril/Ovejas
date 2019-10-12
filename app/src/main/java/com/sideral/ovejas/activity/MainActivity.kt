@@ -2,15 +2,13 @@ package com.sideral.ovejas.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sideral.ovejas.R
 import com.sideral.ovejas.adapter.OvejaAdapter
-import com.sideral.ovejas.entity.GridItem
-import com.sideral.ovejas.entity.HeaderItem
-import com.sideral.ovejas.entity.Item
-import com.sideral.ovejas.entity.Oveja
+import com.sideral.ovejas.entity.*
 import com.sideral.ovejas.model.DatabaseHandler
 import com.sideral.ovejas.model.EditaOvejaModelImp
 import com.sideral.ovejas.model.OvejaModel
@@ -32,14 +30,15 @@ class MainActivity : AppCompatActivity(), OvejaView.Lista {
     override fun mostrarOvejas() {
         var item: Item
         var ovejas = mOvejaPresenter.getOvejas()
-        ovejas.sortBy { it.propietario }
-        var propietario = ""
+        ovejas.sortBy { it.propietario.idPropietario }
+        var propietario = Propietario()
         for (o in ovejas){
-            if (!o.propietario.equals(propietario))
-                item = HeaderItem("${o.propietario}")
+            if (!o.propietario.idPropietario.equals(propietario.idPropietario))
+                item = HeaderItem("${o.propietario.nombre}")
             else
                 item = GridItem("${o.idOveja}")
             mItemList.add(item)
+            Log.d("Propietario", propietario.nombre)
             propietario = o.propietario
         }
     }
