@@ -9,7 +9,7 @@ import java.util.*
      var idOveja : Int = 0
      var propietario : Propietario = Propietario()
      var sexo : String = ""
-     var fechaNacimiento: Date = Calendar.getInstance().time
+     var fechaNacimiento: LocalDate()
      var peso : Double = 0.0
 
 

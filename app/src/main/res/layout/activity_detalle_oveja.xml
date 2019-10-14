@@ -60,14 +60,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idPropietario" />
 
-    <EditText
+    <DatePicker
         android:id="@+id/idFechaNac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:calendarViewShown="false"
         android:ems="10"
         android:inputType="date"
+        android:spinnersShown="true"
         android:text="Fecha Nacimiento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

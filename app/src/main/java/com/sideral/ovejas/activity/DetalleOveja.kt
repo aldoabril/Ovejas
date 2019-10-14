@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.DatePicker
 import android.widget.EditText
 import com.sideral.ovejas.R
 import com.sideral.ovejas.entity.Oveja
@@ -11,6 +12,7 @@ import com.sideral.ovejas.model.DatabaseHandler
 import com.sideral.ovejas.presenter.EditaOvejaPresenterImp
 import com.sideral.ovejas.presenter.ListaOvejasPresenterImp
 import com.sideral.ovejas.view.OvejaView
+import java.util.*
 
 class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
     private val dbHandler = DatabaseHandler(this)
@@ -33,8 +35,10 @@ class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
             propietario.setText(oveja.propietario.nombre)
             val sexo = findViewById<EditText>(R.id.idSexo)
             sexo.setText(oveja.sexo)
-            val fecha = findViewById<EditText>(R.id.idFechaNac)
-            //fecha.setText(oveja.fechaNacimiento)
+            val fecha = findViewById<DatePicker>(R.id.idFechaNac)
+            val cal = Calendar.getInstance()
+            cal.set()
+            fecha.init(Calendar.YEAR, oveja.fechaNacimiento.month, oveja.fechaNacimiento.day)
             val peso = findViewById<EditText>(R.id.idPeso)
             peso.setText(oveja.peso.toString())
 

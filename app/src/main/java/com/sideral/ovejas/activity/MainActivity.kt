@@ -33,10 +33,11 @@ class MainActivity : AppCompatActivity(), OvejaView.Lista {
         ovejas.sortBy { it.propietario.idPropietario }
         var propietario = Propietario()
         for (o in ovejas){
-            if (!o.propietario.idPropietario.equals(propietario.idPropietario))
+            if (!o.propietario.idPropietario.equals(propietario.idPropietario)) {
                 item = HeaderItem("${o.propietario.nombre}")
-            else
-                item = GridItem("${o.idOveja}")
+                mItemList.add(item)
+            }
+            item = GridItem("${o.idOveja}")
             mItemList.add(item)
             Log.d("Propietario", propietario.nombre)
             propietario = o.propietario

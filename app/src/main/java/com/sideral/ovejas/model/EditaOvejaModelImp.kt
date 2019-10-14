@@ -34,7 +34,7 @@ class EditaOvejaModelImp: OvejaModel.EditaOveja {
                 var sexo = c.getString(c.getColumnIndex(DatabaseHandler.OVEJAS_SEXO))
                 oveja.idOveja = idOveja
                 oveja.propietario = propietario
-                oveja.fechaNacimiento = Calendar.getInstance().time
+                oveja.fechaNacimiento = fechaNac
                 oveja.peso = peso
                 oveja.sexo =  sexo
                 c.moveToNext()

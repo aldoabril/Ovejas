@@ -154,7 +154,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper( context,DB_NAME, null
             }
             values =  ContentValues()
             values.put(OVEJAS_PESO_COLUMN,peso)
-            values.put(OVEJAS_FECHA_NAC_COLUMN,"2019/10/09")
+            values.put(OVEJAS_FECHA_NAC_COLUMN,"2019-10-09")
             values.put(OVEJAS_PROPIETARIO_COLUMN,propietario)
             //values.put(OVEJAS_MADRE_COLUMN,1)
             values.put(OVEJAS_ESTADO,1)
