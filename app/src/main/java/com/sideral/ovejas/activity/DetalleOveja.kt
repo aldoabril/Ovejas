@@ -36,14 +36,33 @@ class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
             val sexo = findViewById<EditText>(R.id.idSexo)
             sexo.setText(oveja.sexo)
             val fecha = findViewById<DatePicker>(R.id.idFechaNac)
-            val cal = Calendar.getInstance()
-            cal.set()
-            fecha.init(Calendar.YEAR, oveja.fechaNacimiento.month, oveja.fechaNacimiento.day)
+            val calendar = Calendar.getInstance()
+            calendar.time = oveja.fechaNacimiento
+            val anyo = calendar.get(Calendar.YEAR)
+            val mes = calendar.get(Calendar.MONTH)
+            val dia = calendar.get(Calendar.DAY_OF_MONTH)
+            val fechaActual = Date()
+            val edadMeses = getMesesDiff(oveja.fechaNacimiento, fechaActual)
+            fecha.init(anyo, mes, dia, null )
             val peso = findViewById<EditText>(R.id.idPeso)
+            val edad = findViewById<EditText>(R.id.idEdad)
+            edad.setText(edadMeses.toString())
             peso.setText(oveja.peso.toString())
 
 
     }
+
+    fun getMesesDiff(fecha1: Date, fecha2: Date): Int{
+        val inicio = GregorianCalendar()
+        val fin = GregorianCalendar()
+        inicio.time = fecha1
+        fin.time = fecha2
+        val difA = fin.get(Calendar.YEAR) - inicio.get(Calendar.YEAR)
+        val difM = difA * 12 + fin.get(Calendar.MONTH) - inicio.get(Calendar.MONTH)
+        return difM
+    }
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

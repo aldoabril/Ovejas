@@ -5,6 +5,7 @@ import com.sideral.ovejas.entity.Oveja
 import com.sideral.ovejas.entity.Propietario
 import com.sideral.ovejas.presenter.ListaOvejasPresenterImp
 import com.sideral.ovejas.presenter.OvejaPresenter
+import java.text.SimpleDateFormat
 import java.time.temporal.TemporalQueries.localDate
 import java.util.*
 import kotlin.collections.ArrayList
@@ -34,7 +35,7 @@ class EditaOvejaModelImp: OvejaModel.EditaOveja {
                 var sexo = c.getString(c.getColumnIndex(DatabaseHandler.OVEJAS_SEXO))
                 oveja.idOveja = idOveja
                 oveja.propietario = propietario
-                oveja.fechaNacimiento = fechaNac
+                oveja.fechaNacimiento = SimpleDateFormat("yyyy-MM-dd").parse(fechaNac)
                 oveja.peso = peso
                 oveja.sexo =  sexo
                 c.moveToNext()

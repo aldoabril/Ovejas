@@ -48,7 +48,6 @@ class OvejaAdapter : RecyclerView.Adapter<ViewHolder>() {
         }else{
             view = LayoutInflater.from(parent.context).inflate(R.layout.grid_type_layout,parent,false)
         }
-        val layoutInflater = LayoutInflater.from(parent.context)
         return ViewHolder(view)
     }
 
@@ -63,14 +62,12 @@ class OvejaAdapter : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val item = mItemsList.get(position)
         if (isHeaderType(position)){
             bindHeaderItem(holder, position)
         } else{
             bindGridItem(holder, position)
         }
 
-        //holder.bind(item, context)
     }
 
     private fun bindGridItem(holder: ViewHolder, position: Int) {
