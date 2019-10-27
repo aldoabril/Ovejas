@@ -3,9 +3,12 @@ package com.sideral.ovejas.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Toolbar
 import com.sideral.ovejas.R
 import com.sideral.ovejas.entity.Oveja
 import com.sideral.ovejas.model.DatabaseHandler
@@ -52,6 +55,12 @@ class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.ovejas_menu,menu)
+        return true
+    }
+
+
     fun getMesesDiff(fecha1: Date, fecha2: Date): Int{
         val inicio = GregorianCalendar()
         val fin = GregorianCalendar()
@@ -69,6 +78,9 @@ class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_oveja)
         getOveja()
+
+        //var toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        //setSupportActionBar(toolbar)
 
 
     }
