@@ -6,5 +6,6 @@
         android:title="@string/crear_rebaño" />
     <item
         android:icon="@mipmap/ic_launcher_round"
-        android:title="@string/vender_rebaño" />
+        android:title="@string/vender_rebaño"
+        />
 </menu>

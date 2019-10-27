@@ -4,16 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.Toolbar
 import com.sideral.ovejas.R
 import com.sideral.ovejas.entity.Oveja
 import com.sideral.ovejas.model.DatabaseHandler
 import com.sideral.ovejas.presenter.EditaOvejaPresenterImp
-import com.sideral.ovejas.presenter.ListaOvejasPresenterImp
 import com.sideral.ovejas.view.OvejaView
 import java.util.*
 
@@ -56,7 +53,7 @@ class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.ovejas_menu,menu)
+        menuInflater.inflate(R.menu.detalle_menu,menu)
         return true
     }
 
