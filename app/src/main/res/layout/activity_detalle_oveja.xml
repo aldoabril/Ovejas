@@ -21,6 +21,12 @@
             android:textSize="36sp"
             android:layout_gravity="center"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Identificador">
+
+        </TextView>
         <EditText
             android:id="@+id/idOveja"
             android:layout_width="wrap_content"
@@ -28,6 +34,12 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="IdOveja"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Propietario">
+
+        </TextView>
 
         <Spinner
             android:id="@+id/idPropietarioSpinner"
@@ -45,6 +57,13 @@
             android:inputType="textPersonName"
             android:text="Propietario"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sexo">
+
+        </TextView>
+
         <EditText
             android:id="@+id/idSexo"
             android:layout_width="wrap_content"
@@ -52,6 +71,13 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Sexo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha Nacimiento">
+
+        </TextView>
+
 
         <DatePicker
             android:id="@+id/idFechaNac"
@@ -66,6 +92,12 @@
             android:spinnersShown="true"
             android:text="Fecha Nacimiento"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edad">
+
+        </TextView>
 
         <EditText
             android:id="@+id/idEdad"
@@ -75,6 +107,12 @@
             android:inputType="textPersonName"
             android:text="Edad"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Peso">
+
+        </TextView>
 
         <EditText
             android:id="@+id/idPeso"
@@ -84,13 +122,22 @@
             android:inputType="textPersonName"
             android:text="Peso"
             />
-
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Partos">
+
+        </TextView>
+
+
+        <EditText
             android:id="@+id/idPartos"
-            android:layout_width="54dp"
-            android:layout_height="16dp"
-            android:text="Partos"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
@@ -101,6 +148,7 @@
             android:focusable="true"
             android:onClick="crearParto"
             />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

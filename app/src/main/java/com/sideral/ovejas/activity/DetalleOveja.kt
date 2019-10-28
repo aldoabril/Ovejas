@@ -3,6 +3,8 @@ package com.sideral.ovejas.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.DatePicker
 import android.widget.EditText
@@ -80,5 +82,9 @@ class DetalleOveja : AppCompatActivity(), OvejaView.Detalle {
         startActivity(intent)
     }
 
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = MenuInflater(this)
+        inflater.inflate(R.menu.detalle_ovejas_menu, menu)
+        return true
+    }
 }
