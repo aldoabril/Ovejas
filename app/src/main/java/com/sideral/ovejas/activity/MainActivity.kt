@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity(), OvejaView.Lista {
     private val mOvejaPresenter = ListaOvejasPresenterImp(this, dbHandler )
     private val DEFAULT_SPAN_COUNT: Int=5
     lateinit var mRecyclerView : RecyclerView
-    lateinit var mToolbar: Toolbar
     val mAdapter : OvejaAdapter = OvejaAdapter()
     val mItemList: MutableList<Item> = ArrayList()
 
@@ -55,7 +54,6 @@ class MainActivity : AppCompatActivity(), OvejaView.Lista {
 
         mRecyclerView = findViewById(R.id.rvOvejasList)
         mRecyclerView.setHasFixedSize(true)
-        //mToolbar = findViewById(R.id.toolbar)
         mRecyclerView.setRecycledViewPool(RecyclerView.RecycledViewPool())
         val gridLayoutManager = GridLayoutManager(this, DEFAULT_SPAN_COUNT)
         mRecyclerView.layoutManager = gridLayoutManager

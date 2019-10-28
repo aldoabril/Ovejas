@@ -11,12 +11,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sideral.ovejas.R
 import com.sideral.ovejas.activity.DetalleOveja
+
 import com.sideral.ovejas.entity.Item
 import com.sideral.ovejas.entity.TipoItem
-import com.sideral.ovejas.model.EditaOvejaModelImp
-import com.sideral.ovejas.presenter.EditaOvejaPresenterImp
 import com.sideral.ovejas.view.ViewHolder
-import kotlinx.android.synthetic.main.activity_detalle_oveja.view.*
 
 
 class OvejaAdapter : RecyclerView.Adapter<ViewHolder>() {

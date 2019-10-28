@@ -8,12 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.Partos"/>
-        <activity android:name=".activity.DetalleOveja"/>
-
-        <activity android:name=".AndroidParty" />
-        <activity android:name=".GruposVistas" />
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <activity android:name=".activity.DetalleOveja"></activity>
+        <activity android:name=".activity.Partos" />
+        <activity android:name=".activity.EditaOveja" />
         <activity android:name=".activity.tarjeta_oveja" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
