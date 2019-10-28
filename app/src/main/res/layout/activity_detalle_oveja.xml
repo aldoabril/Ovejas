@@ -1,107 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:fillViewport="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent"
+    tools:context=".activity.DetalleOveja"
+    android:paddingLeft="10dp">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <TextView
+        android:id="@+id/titulo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activity.DetalleOveja"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:text="Edita Oveja"
+        android:textColor="#E91E63"
+        android:textSize="36sp"/>
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Detalle Oveja"
-            android:textColor="#E91E63"
-            android:textSize="36sp"
-            android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/idLblOveja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Identificador:"
+        android:layout_below="@+id/titulo"/>
+    <TextView
+        android:id="@+id/idTxtOveja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Identificador"
+        android:layout_toRightOf="@id/idLblOveja"
+        android:layout_below="@id/titulo"/>
 
-        <EditText
-            android:id="@+id/idOveja"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="IdOveja"/>
+    <TextView
+        android:id="@+id/idLblPropietario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Propietario:"
+        android:layout_below="@id/idTxtOveja"/>
 
-        <Spinner
-            android:id="@+id/idPropietarioSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp">
+    <TextView
+        android:id="@+id/idTxtPropietario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Propietario"
+        android:layout_toRightOf="@id/idLblPropietario"
+        android:layout_below="@id/idTxtOveja"/>
 
-        </Spinner>
 
-        <EditText
-            android:id="@+id/idPropietario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Propietario"/>
+    <TextView
+        android:id="@+id/idLblSexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sexo:"
+        android:layout_below="@id/idLblPropietario"/>
 
-        <EditText
-            android:id="@+id/idSexo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Sexo"/>
+    <TextView
+        android:id="@+id/idTxtSexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sexo"
+        android:layout_toRightOf="@id/idLblSexo"
+        android:layout_below="@id/idLblPropietario"/>
 
-        <DatePicker
-            android:id="@+id/idFechaNac"
-            style="@android:style/Widget.DeviceDefault.DatePicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:calendarViewShown="false"
-            android:clickable="false"
-            android:datePickerMode="spinner"
-            android:ems="10"
-            android:inputType="date"
-            android:spinnersShown="true"
-            android:text="Fecha Nacimiento"
-            />
+    <TextView
+        android:id="@+id/idLblFecNac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha Nacimiento:"
+        android:layout_below="@+id/idLblSexo"/>
 
-        <EditText
-            android:id="@+id/idEdad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Edad"
-            />
+    <TextView
+        android:id="@+id/idTxtFecNac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha Nacimiento"
+        android:layout_toRightOf="@id/idLblFecNac"
+        android:layout_below="@id/idLblSexo"/>
 
-        <EditText
-            android:id="@+id/idPeso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Peso"
-            />
+    <TextView
+        android:id="@+id/idLblEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edad:"
+        android:layout_below="@id/idLblFecNac"/>
 
-        <TextView
-            android:id="@+id/idPartos"
-            android:layout_width="54dp"
-            android:layout_height="16dp"
-            android:text="Partos"
-            />
+    <TextView
+        android:id="@+id/idTxtEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edad"
+        android:layout_below="@id/idLblFecNac"
+        android:layout_toRightOf="@id/idLblEdad"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="crearParto"
-            />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.core.widget.NestedScrollView>
+    <TextView
+        android:id="@+id/idLblPeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peso:"
+        android:layout_below="@id/idLblEdad"/>
+
+    <TextView
+        android:id="@+id/idTxtPeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peso"
+        android:layout_below="@id/idLblEdad"
+        android:layout_toRightOf="@+id/idLblPeso"/>
+
+</RelativeLayout>
