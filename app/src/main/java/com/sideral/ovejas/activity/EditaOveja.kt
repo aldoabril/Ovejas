@@ -9,6 +9,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import com.sideral.ovejas.R
 import com.sideral.ovejas.entity.Oveja
+import com.sideral.ovejas.helper.OvejaHelper
 import com.sideral.ovejas.model.DatabaseHandler
 import com.sideral.ovejas.presenter.EditaOvejaPresenterImp
 import com.sideral.ovejas.view.OvejaView
@@ -21,7 +22,7 @@ class EditaOveja : AppCompatActivity(), OvejaView.Detalle {
     override fun getOveja() {
         val intentTrigger = intent
         if (intentTrigger.hasExtra("item")) {
-            mEditaOvejaPresenterImp.mostrarOveja(intentTrigger.getIntExtra("item", -1))
+            mEditaOvejaPresenterImp.getDatosOveja(intentTrigger.getIntExtra("item", -1))
         }
     }
 
@@ -41,8 +42,7 @@ class EditaOveja : AppCompatActivity(), OvejaView.Detalle {
             val anyo = calendar.get(Calendar.YEAR)
             val mes = calendar.get(Calendar.MONTH)
             val dia = calendar.get(Calendar.DAY_OF_MONTH)
-            val fechaActual = Date()
-            val edadMeses = getMesesDiff(oveja.fechaNacimiento, fechaActual)
+            val edadMeses = OvejaHelper().getEdad(oveja.fechaNacimiento)
             fecha.init(anyo, mes, dia, null )
             val peso = findViewById<EditText>(R.id.idPeso)
             val edad = findViewById<EditText>(R.id.idEdad)
@@ -58,15 +58,6 @@ class EditaOveja : AppCompatActivity(), OvejaView.Detalle {
     }
 
 
-    fun getMesesDiff(fecha1: Date, fecha2: Date): Int{
-        val inicio = GregorianCalendar()
-        val fin = GregorianCalendar()
-        inicio.time = fecha1
-        fin.time = fecha2
-        val difA = fin.get(Calendar.YEAR) - inicio.get(Calendar.YEAR)
-        val difM = difA * 12 + fin.get(Calendar.MONTH) - inicio.get(Calendar.MONTH)
-        return difM
-    }
 
 
 
